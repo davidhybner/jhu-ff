@@ -1,5 +1,7 @@
 package jhu.ff.controllers;
 
+import jhu.ff.models.Roles;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,6 @@ public class ApplicationServlet extends SecuredController {
 
     @Override
     public String[] getAuthorizedRoles() {
-        return new String[]{"player"};
+        return new String[]{Roles.Player.getRoleName(), Roles.Admin.getRoleName()};
     }
 }

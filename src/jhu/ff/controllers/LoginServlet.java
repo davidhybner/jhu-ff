@@ -1,5 +1,7 @@
 package jhu.ff.controllers;
 
+import jhu.ff.models.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -7,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginServlet extends HttpServlet {
     private Connection database;
@@ -44,8 +47,10 @@ public class LoginServlet extends HttpServlet {
         }
 
         try {
+            String username = request.getParameter("username");
+
             PreparedStatement loginStatement = database.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
-            loginStatement.setString(1, request.getParameter("username"));
+            loginStatement.setString(1, username);
             loginStatement.setString(2, request.getParameter("password"));
             ResultSet users = loginStatement.executeQuery();
 
@@ -59,16 +64,18 @@ public class LoginServlet extends HttpServlet {
             loginStatement.close();
             users.close();
 
-            UUID sessionID = UUID.randomUUID();
+            PreparedStatement rolesStatement = database.prepareStatement("SELECT * FROM user_roles WHERE username = ?");
+            rolesStatement.setString(1, username);
+            ResultSet userRolesResults = rolesStatement.executeQuery();
 
-            PreparedStatement sessionStatement = database.prepareStatement("INSERT INTO user_sessions VALUES (?, ?)");
-            sessionStatement.setString(1, request.getParameter("username"));
-            sessionStatement.setString(2, sessionID.toString());
-            sessionStatement.executeUpdate();
+            List<String> roles = new ArrayList<String>();
 
-            request.getSession().setAttribute("sessionID", sessionID.toString());
+            while (userRolesResults.next()) {
+                roles.add(userRolesResults.getString("role"));
+            }
 
-            sessionStatement.close();
+            User user = new User(username, roles);
+            request.getSession().setAttribute("user", user);
 
             response.sendRedirect("/app");
 
