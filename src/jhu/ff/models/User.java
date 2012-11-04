@@ -53,4 +53,8 @@ public class User {
                 ", roles=" + roles +
                 '}';
     }
+
+    public List<String> getRoles() {
+        return roles;
+    }
 }

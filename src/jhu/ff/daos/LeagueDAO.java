@@ -129,10 +129,14 @@ public class LeagueDAO {
 
     public static void main(String[] args) {
         LeagueDAO leagueDAO = LeagueDAO.getInstance();
+
         System.out.println(leagueDAO.getLeagues());
+
         System.out.println(leagueDAO.getLeague(1));
+
         int leagueId = leagueDAO.createLeague("test league", "chris");
         System.out.println(leagueId);
+
         System.out.println(leagueDAO.deleteLeague(leagueId));
     }
 }
