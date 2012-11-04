@@ -10,7 +10,7 @@
     %>
 
     <h1>JHU-FF</h1>
-    <p>Welcome to JHU-FF, <%= user.getUsername() %>! Ohhh yeah!</p>
+    <p>Welcome to JHU-FF, <%= user.getUsername() %>!</p>
 
     <% if(user.hasRole(Roles.Player.getRoleName())) { %>
         <p>Player</p>

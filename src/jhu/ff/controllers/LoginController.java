@@ -1,5 +1,6 @@
 package jhu.ff.controllers;
 
+import jhu.ff.models.Roles;
 import jhu.ff.models.User;
 
 import javax.servlet.RequestDispatcher;
@@ -12,16 +13,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginServlet extends HttpServlet {
+public class LoginController extends HttpServlet {
     private Connection database;
 
     @Override
     public void init() throws ServletException {
         try {
-            Class.forName("org.sqlite.JDBC");
-            String path = "jdbc:sqlite:" + getServletContext().getRealPath("/db/jhu-ff.db");
-            System.out.println(path);
-            database = DriverManager.getConnection(path);
+            Class.forName("com.mysql.jdbc.Driver");
+            database = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jhu_ff", "root", "");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -75,9 +74,16 @@ public class LoginServlet extends HttpServlet {
             }
 
             User user = new User(username, roles);
+
             request.getSession().setAttribute("user", user);
 
-            response.sendRedirect("/app");
+            if(user.hasRole(Roles.Admin.getRoleName())) {
+                response.sendRedirect("/views/admin/admin.jsp");
+            } else if(user.hasRole(Roles.Player.getRoleName())) {
+                response.sendRedirect("/app");
+            } else {
+                response.sendRedirect("/views/error.jsp");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,10 +1,16 @@
 package jhu.ff.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private String username;
     private List<String> roles;
+
+    public User(String username) {
+        this.username = username;
+        roles = new ArrayList<String>();
+    }
 
     public User(String username, List<String> roles) {
         this.username = username;
@@ -34,5 +40,17 @@ public class User {
 
     public boolean hasRole(String roleName) {
         return roles.contains(roleName);
+    }
+
+    public void addRole(String role) {
+        roles.add(role);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

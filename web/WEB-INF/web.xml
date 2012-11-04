@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>jhu.ff.controllers.LoginServlet</servlet-class>
+        <servlet-class>jhu.ff.controllers.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -16,7 +16,7 @@
 
     <servlet>
         <servlet-name>Application</servlet-name>
-        <servlet-class>jhu.ff.controllers.ApplicationServlet</servlet-class>
+        <servlet-class>jhu.ff.controllers.ApplicationController</servlet-class>
     </servlet>
         <servlet-mapping>
         <servlet-name>Application</servlet-name>
@@ -25,11 +25,7 @@
 
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>jhu.ff.controllers.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Users</servlet-name>
-        <servlet-class>jhu.ff.controllers.UsersController</servlet-class>
+        <servlet-class>jhu.ff.controllers.LogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>

@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class SecuredController extends HttpServlet {
+public abstract class AuthorityController extends HttpServlet {
     private Connection database;
 
     @Override
@@ -68,51 +68,6 @@ public abstract class SecuredController extends HttpServlet {
         }
 
         return false;
-
-//        String sessionID = (String) request.getSession().getAttribute("sessionID");
-//
-//        try {
-//            PreparedStatement statement = database.prepareStatement("SELECT * FROM user_sessions WHERE session_id = ?");
-//            statement.setString(1, sessionID);
-//            ResultSet userSessionsResults = statement.executeQuery();
-//
-//            String username = "";
-//
-//            if(userSessionsResults.next()) {
-//                username = userSessionsResults.getString("username");
-//            } else {
-//                return false;
-//            }
-//
-//            userSessionsResults.close();
-//            statement.close();
-
-//            statement = database.prepareStatement("SELECT * FROM user_roles WHERE username = ?");
-//            statement.setString(1, username);
-//            ResultSet userRolesResults = statement.executeQuery();
-//
-//            List<String> roles = new ArrayList<String>();
-//
-//            while (userRolesResults.next()) {
-//                roles.add(userRolesResults.getString("role"));
-//            }
-//
-//            User user = new User(username, roles);
-//
-//            userRolesResults.close();
-//            statement.close();
-//
-//            for(String role : getAuthorizedRoles()) {
-//                if(user.hasRole(role)) {
-//                    request.getSession().setAttribute("userRoles", roles);
-//                    return true;
-//                }
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return false;
     }
 
     public abstract String[] getAuthorizedRoles();
