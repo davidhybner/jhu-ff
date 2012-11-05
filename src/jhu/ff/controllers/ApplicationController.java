@@ -1,6 +1,5 @@
 package jhu.ff.controllers;
 
-import jhu.ff.models.Roles;
 import jhu.ff.models.User;
 
 import javax.servlet.ServletException;
@@ -23,6 +22,6 @@ public class ApplicationController extends AuthorityController {
 
     @Override
     public String[] getAuthorizedRoles() {
-        return new String[]{Roles.Player.getRoleName()};
+        return new String[]{"player"};
     }
 }

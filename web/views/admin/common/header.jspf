@@ -1,0 +1,12 @@
+<div class="header">
+    <div class="branding">
+        <h2>JHU-FF Admin Portal</h2>
+        <span class="right">
+            <a href="/logout">Logout</a>
+        </span>
+    </div>
+    <div class="nav">
+        <span>Users</span>
+        <span>Leagues</span>
+    </div>
+</div>

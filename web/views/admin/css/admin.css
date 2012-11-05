@@ -1,0 +1,42 @@
+body {
+    background: white;
+    font-family: Tahoma, Arial, sans-serif, serif;
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2 {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.header {
+    height: 60px;
+}
+
+.branding {
+    background-color: green;
+    color: white;
+}
+
+.branding a {
+    color: white;
+}
+
+.branding a:visited {
+    color: white;
+}
+
+.nav {
+    background-color: #d3d3d3;
+    box-shadow: 0px 5px 5px #888;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

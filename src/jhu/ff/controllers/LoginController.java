@@ -1,6 +1,5 @@
 package jhu.ff.controllers;
 
-import jhu.ff.models.Roles;
 import jhu.ff.models.User;
 
 import javax.servlet.RequestDispatcher;
@@ -77,9 +76,9 @@ public class LoginController extends HttpServlet {
 
             request.getSession().setAttribute("user", user);
 
-            if(user.hasRole(Roles.Admin.getRoleName())) {
+            if(user.hasRole("admin")) {
                 response.sendRedirect("/views/admin/admin.jsp");
-            } else if(user.hasRole(Roles.Player.getRoleName())) {
+            } else if(user.hasRole("player")) {
                 response.sendRedirect("/app");
             } else {
                 response.sendRedirect("/views/error.jsp");
