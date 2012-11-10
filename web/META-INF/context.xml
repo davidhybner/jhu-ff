@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/mysql" auth="Container"
+              maxActive="100" maxIdle="30" maxWait="10000"
+              logAbandonded="true" removeAbandonded="true" removeAbandonedTimeout="60"
+              type="javax.sql.DataSource" username="root" password=""
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://127.0.0.1:3306/jhu_ff?autoReconnect=true"/>
+</Context>

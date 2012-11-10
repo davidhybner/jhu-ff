@@ -1,5 +1,6 @@
 package jhu.ff.daos;
 
+import jhu.ff.helpers.ConnectionPool;
 import jhu.ff.models.League;
 import jhu.ff.models.Roster;
 import jhu.ff.models.User;
@@ -9,18 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeagueDAO {
-    private Connection database;
+    private ConnectionPool connectionPool;
     private static LeagueDAO instance;
 
     private LeagueDAO() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            database = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jhu_ff", "root", "");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connectionPool = ConnectionPool.getInstance();
     }
 
     public static synchronized LeagueDAO getInstance() {
@@ -32,6 +26,8 @@ public class LeagueDAO {
     }
 
     public List<League> getLeagues() {
+        Connection database = connectionPool.getConnection();
+
         List<League> results = new ArrayList<League>();
         try {
             PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM leagues");
@@ -43,14 +39,17 @@ public class LeagueDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return results;
     }
 
     public League getLeague(int leagueId) {
-        League result = null;
+        Connection database = connectionPool.getConnection();
 
+        League result = null;
         try {
             PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM leagues WHERE id = ?");
             preparedStatement.setInt(1, leagueId);
@@ -79,12 +78,16 @@ public class LeagueDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return result;
     }
 
     public int createLeague(String name, String owner) {
+        Connection database = connectionPool.getConnection();
+
         int result = -1;
         try {
             PreparedStatement preparedStatement = database.prepareStatement("INSERT INTO leagues(name, owner) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -102,14 +105,17 @@ public class LeagueDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return result;
     }
 
     public boolean deleteLeague(int leagueId) {
-        boolean result = false;
+        Connection database = connectionPool.getConnection();
 
+        boolean result = false;
         try {
             PreparedStatement preparedStatement = database.prepareStatement("DELETE FROM leagues WHERE id = ?");
             preparedStatement.setInt(1, leagueId);
@@ -122,21 +128,10 @@ public class LeagueDAO {
             preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return result;
-    }
-
-    public static void main(String[] args) {
-        LeagueDAO leagueDAO = LeagueDAO.getInstance();
-
-        System.out.println(leagueDAO.getLeagues());
-
-        System.out.println(leagueDAO.getLeague(1));
-
-        int leagueId = leagueDAO.createLeague("test league", "chris");
-        System.out.println(leagueId);
-
-        System.out.println(leagueDAO.deleteLeague(leagueId));
     }
 }

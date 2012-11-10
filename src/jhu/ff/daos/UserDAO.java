@@ -1,5 +1,6 @@
 package jhu.ff.daos;
 
+import jhu.ff.helpers.ConnectionPool;
 import jhu.ff.models.User;
 
 import java.sql.*;
@@ -8,17 +9,10 @@ import java.util.List;
 
 public class UserDAO {
     private static UserDAO instance;
-    private Connection database;
+    private ConnectionPool connectionPool;
 
     private UserDAO() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            database = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jhu_ff", "root", "");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connectionPool = ConnectionPool.getInstance();
     }
 
     public static synchronized UserDAO getInstance() {
@@ -30,6 +24,8 @@ public class UserDAO {
     }
 
     public List<User> getUsers() {
+        Connection database = connectionPool.getConnection();
+
         List<User> results = new ArrayList<User>();
         try {
             PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM users");
@@ -56,17 +52,19 @@ public class UserDAO {
            }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return results;
     }
 
     public User getUser(String username) {
-        User result = null;
+        Connection database = connectionPool.getConnection();
 
-        PreparedStatement preparedStatement = null;
+        User result = null;
         try {
-            preparedStatement = database.prepareStatement("SELECT * FROM users WHERE username = ?");
+            PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM users WHERE username = ?");
             preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -89,12 +87,16 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return result;
     }
 
     public boolean createUser(User user, String password) {
+        Connection database = connectionPool.getConnection();
+
         boolean result = false;
         try {
             PreparedStatement preparedStatement = database.prepareStatement("INSERT INTO users VALUES (?, ?)");
@@ -117,12 +119,16 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return result;
     }
 
     public boolean deleteUser(String username) {
+        Connection database = connectionPool.getConnection();
+
         boolean result = false;
         try {
             PreparedStatement preparedStatement = database.prepareStatement("DELETE FROM users WHERE username = ?");
@@ -140,24 +146,10 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
 
         return result;
-    }
-
-    public static void main(String[] args) {
-        UserDAO userDAO = UserDAO.getInstance();
-
-        List<User> users = userDAO.getUsers();
-        System.out.println(users);
-
-        User user = userDAO.getUser("chris");
-        System.out.println(user);
-
-        User userToInsert = new User("BartMan");
-        userToInsert.addRole("player");
-        System.out.println(userDAO.createUser(userToInsert, "password"));
-
-        System.out.println(userDAO.deleteUser(userToInsert.getUsername()));
     }
 }

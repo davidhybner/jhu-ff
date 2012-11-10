@@ -1,5 +1,6 @@
 package jhu.ff.controllers;
 
+import jhu.ff.helpers.ConnectionPool;
 import jhu.ff.models.User;
 
 import javax.servlet.RequestDispatcher;
@@ -8,36 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public abstract class AuthorityController extends HttpServlet {
-    private Connection database;
+
+    protected ConnectionPool connectionPool;
 
     @Override
     public void init() throws ServletException {
-        super.init();
-
-        try {
-            Class.forName("org.sqlite.JDBC");
-            database = DriverManager.getConnection("jdbc:sqlite:" + getServletContext().getRealPath("/db/jhu-ff.db"));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void destroy() {
-        try {
-            database.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        super.destroy();
+        this.connectionPool = ConnectionPool.getInstance();
     }
 
     @Override
@@ -71,8 +50,4 @@ public abstract class AuthorityController extends HttpServlet {
     }
 
     public abstract String[] getAuthorizedRoles();
-
-    protected final Connection getConnection() {
-        return database;
-    }
 }

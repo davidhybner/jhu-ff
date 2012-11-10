@@ -1,5 +1,6 @@
 package jhu.ff.controllers;
 
+import jhu.ff.helpers.ConnectionPool;
 import jhu.ff.models.User;
 
 import javax.servlet.RequestDispatcher;
@@ -13,27 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginController extends HttpServlet {
-    private Connection database;
+    private ConnectionPool connectionPool;
 
     @Override
     public void init() throws ServletException {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            database = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/jhu_ff", "root", "");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void destroy() {
-        try {
-            database.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        connectionPool = ConnectionPool.getInstance();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,7 +29,11 @@ public class LoginController extends HttpServlet {
             return;
         }
 
+        Connection database = null;
+
         try {
+            database = connectionPool.getConnection();
+
             String username = request.getParameter("username");
 
             PreparedStatement loginStatement = database.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
@@ -86,6 +75,8 @@ public class LoginController extends HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
         }
     }
 }

@@ -1,4 +1,3 @@
-<%@ page import="jhu.ff.models.Roles" %>
 <%@ page import="jhu.ff.models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -12,11 +11,11 @@
     <h1>JHU-FF</h1>
     <p>Welcome to JHU-FF, <%= user.getUsername() %>!</p>
 
-    <% if(user.hasRole(Roles.Player.getRoleName())) { %>
+    <% if(user.hasRole("player")) { %>
         <p>Player</p>
     <% } %>
 
-    <% if(user.hasRole(Roles.Admin.getRoleName())) { %>
+    <% if(user.hasRole("admin")) { %>
         <p>Admin</p>
     <% } %>
 
