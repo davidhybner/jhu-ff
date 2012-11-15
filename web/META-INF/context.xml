@@ -6,4 +6,9 @@
               type="javax.sql.DataSource" username="root" password=""
               driverClassName="com.mysql.jdbc.Driver"
               url="jdbc:mysql://127.0.0.1:3306/jhu_ff?autoReconnect=true"/>
+
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" debug="99"
+           dataSourceName="jdbc/mysql" localDataSource="true"
+           userTable="users" userNameCol="username" userCredCol="password"
+           userRoleTable="user_roles" roleNameCol="role" />
 </Context>
