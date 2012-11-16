@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>JHU-FF | Welcome</title>
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link type="text/css" rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 <div class="nav">
     <ul>
         <li>My Leagues</li>
-        <li>Create League</li>
+        <li><a href="leagues/new.jsp">Create League</a></li>
         <li>Join League</li>
         <li>Account Info</li>
     </ul>

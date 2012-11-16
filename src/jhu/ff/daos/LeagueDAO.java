@@ -8,6 +8,7 @@ import jhu.ff.models.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class LeagueDAO {
     private ConnectionPool connectionPool;
@@ -34,7 +35,7 @@ public class LeagueDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                League league = new League(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("owner"));
+                League league = new League(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("owner"), resultSet.getString("public_id"));
                 results.add(league);
             }
         } catch (SQLException e) {
@@ -56,7 +57,7 @@ public class LeagueDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()) {
-                result = new League(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("owner"));
+                result = new League(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("owner"), resultSet.getString("public_id"));
             }
 
             resultSet.close();
@@ -90,9 +91,10 @@ public class LeagueDAO {
 
         int result = -1;
         try {
-            PreparedStatement preparedStatement = database.prepareStatement("INSERT INTO leagues(name, owner) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = database.prepareStatement("INSERT INTO leagues(name, owner, public_id) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, owner);
+            preparedStatement.setString(3, UUID.randomUUID().toString());
             preparedStatement.executeUpdate();
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -102,6 +104,11 @@ public class LeagueDAO {
 
             generatedKeys.close();
             preparedStatement.close();
+
+            // always add the owner of the league as a player
+            if(result > -1) {
+                LeaguePlayerDAO.getInstance().addPlayerToLeague(result, owner);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

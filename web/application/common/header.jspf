@@ -1,0 +1,15 @@
+<div class="header">
+    <h2>JHU-FF Application</h2>
+
+    <form action="/logout" method="get">
+        <input type="submit" value="Logout">
+    </form>
+</div>
+<div class="nav">
+    <ul>
+        <li>My Leagues</li>
+        <li><a href="leagues/new.jsp"></a></li>
+        <li>Join League</li>
+        <li>Account Info</li>
+    </ul>
+</div>
