@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #d3d3d3;
+    font-family: tahoma, verdana, sans-serif;
+}
+
+p {
+    font-size: 16px;
+}
+
+.header {
+    margin-top: 20px;
+    background: navy;
+    color: white;
+    height: 60px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 0 10px 0 10px;
+}
+
+.nav {
+    background: #d3d3d3;
+}
+
+.nav ul {
+    list-style: none;
+}
+
+.nav ul li {
+    display: inline;
+}
+
+.frame {
+    margin-top: 40px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background: white;
+    border: 1px solid black;
+}
+
+.shadow {
+    box-shadow: 0px 10px 5px #888888;
+}
+
+.vertically-centered {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.content {
+    margin: 10px;
+    padding: 5px;
+}
+
+.play-button {
+    border-radius: 7px;
+    color: white;
+    background: #006400;
+    text-align: center;
+    padding: 20px 35px 20px 35px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+}
+

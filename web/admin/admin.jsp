@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>JHU-FF | Admin Portal</title>
-    <link type="text/css" rel="stylesheet" href="css/admin.css">
+    <link type="text/css" rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
 
