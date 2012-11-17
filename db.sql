@@ -1,9 +1,9 @@
 # DB migration file for MySQL. Run the following command to build the database:
 # mysql -u root < (absolute-path)/jhu-ff/db.sql
 
-DROP DATABASE IF EXISTS jhu_ff_test;
-CREATE DATABASE jhu_ff_test;
-USE jhu_ff_test;
+DROP DATABASE IF EXISTS jhu_ff;
+CREATE DATABASE jhu_ff;
+USE jhu_ff;
 
 CREATE TABLE users (
   username varchar(50) NOT NULL,
