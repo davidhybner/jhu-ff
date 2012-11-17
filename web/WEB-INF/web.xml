@@ -27,6 +27,15 @@
         <servlet-name>League</servlet-name>
         <servlet-class>jhu.ff.controllers.LeagueController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registration</servlet-name>
+        <servlet-class>jhu.ff.controllers.RegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Registration</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>League</servlet-name>
         <url-pattern>/leagues</url-pattern>

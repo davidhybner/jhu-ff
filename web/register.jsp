@@ -13,23 +13,24 @@
     </div>
 
     <div class="content">
-        <h2>Login</h2>
+        <h2>Register</h2>
 
-        <form method="POST" action="j_security_check">
+        <form action="register" method="post">
             <table>
                 <tr>
                     <td>Email Address</td>
-                    <td><input type="text" name="j_username"/></td>
+                    <td><input type="text" name="emailAddress"></td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" name="j_password"/></td>
+                    <td><input type="password" name="password"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="text-align: right;"><input type="submit" value="Play!"/></td>
+                    <td>Password Confirmation</td>
+                    <td><input type="password" name="passwordConfirmation"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="text-align: center;">Not registered? <a href="/register">Sign up now!</a></td>
+                    <td colspan="2"><input type="submit" value="Register"></td>
                 </tr>
             </table>
         </form>
