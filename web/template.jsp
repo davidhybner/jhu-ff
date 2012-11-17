@@ -1,8 +1,7 @@
-<%@ page import="jhu.ff.models.League" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>JHU-FF | League Created</title>
+    <title>JHU-FF</title>
     <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 
@@ -24,19 +23,7 @@
     </div>
 
     <div class="content">
-        <h2>League Created!</h2>
-
-        <%
-            League league = (League) request.getAttribute("league");
-        %>
-
-        <p>League <%= league.getName() %> created successfully! The league's public identifier
-            is: <%= league.getPublicID() %> -
-            share this identifier with your friends so they can join the league!</p>
-
-        <% String leagueURL = "/leagues/" + league.getId(); %>
-
-        <div style="text-align: center;"><span class="play-button"><a href="<%= leagueURL %>">Goto the League!</a></span></div>
+        <h2>Title Goes Here</h2>
     </div>
 </div>
 
