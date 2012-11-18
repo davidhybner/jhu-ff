@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>JHU-FF</title>
-    <link rel="stylesheet" type="text/css" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
 
 <body>
@@ -23,7 +23,25 @@
     </div>
 
     <div class="content">
-        <h2>Title Goes Here</h2>
+        <h2>Join League</h2>
+
+        <% if(request.getAttribute("message") != null) { %>
+            <p class="error-message"><%= request.getAttribute("message") %></p>
+        <% } %>
+
+        <p>Enter a league's public identifier value to attempt to join a league.</p>
+
+        <form action="/leagues" method="post">
+            <table>
+                <tr>
+                    <td>League Identifier</td>
+                    <td><input type="text" name="leaguePublicId"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: right;"><input type="submit" value="Join League"></td>
+                </tr>
+            </table>
+        </form>
     </div>
 </div>
 

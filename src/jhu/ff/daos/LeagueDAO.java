@@ -141,4 +141,27 @@ public class LeagueDAO {
 
         return result;
     }
+
+    public League findLeagueByPublicId(String leaguePublicId) {
+        Connection database = connectionPool.getConnection();
+
+        League result = null;
+        try {
+            PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM leagues WHERE public_id = ?");
+            preparedStatement.setString(1, leaguePublicId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                result = new League(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("owner"), resultSet.getString("public_id"));
+            }
+
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  finally {
+            connectionPool.closeConnection(database);
+        }
+
+        return result;
+    }
 }

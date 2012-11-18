@@ -15,7 +15,7 @@
         <ul>
             <li>My Leagues</li>
             <li><a href="/application/leagues/new.jsp">Create League</a></li>
-            <li>Join League</li>
+            <li><a href="/application/leagues/join.jsp">Join League</a></li>
             <li>Account Info</li>
             <li><a href="/logout">Logout</a></li>
         </ul>
