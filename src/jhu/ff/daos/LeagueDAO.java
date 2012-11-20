@@ -164,4 +164,28 @@ public class LeagueDAO {
 
         return result;
     }
+
+    public List<League> findLeaguesByPlayer(String playerName) {
+        Connection database = connectionPool.getConnection();
+
+        List<League> results = new ArrayList<League>();
+        try {
+            PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM league_players as lp JOIN leagues as l WHERE lp.league_id = l.id AND lp.username = ?");
+            preparedStatement.setString(1, playerName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                League league = new League(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("owner"), resultSet.getString("public_id"));
+                results.add(league);
+            }
+
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
+        }
+
+        return results;
+    }
 }

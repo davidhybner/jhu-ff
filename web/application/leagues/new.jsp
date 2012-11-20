@@ -12,8 +12,14 @@
         <span class="vertically-centered"><h2>JHU Fantasy Football</h2></span>
     </div>
 
-    <div>
-
+    <div class="nav">
+        <ul>
+            <li><a href="/leagues?requestType=list">My Leagues</a></li>
+            <li><a href="/application/leagues/new.jsp">Create League</a></li>
+            <li><a href="/application/leagues/join.jsp">Join League</a></li>
+            <li>Account Info</li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
     </div>
 
     <div class="content">

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class LeagueController extends HttpServlet {
     private LeagueDAO leagueDAO = LeagueDAO.getInstance();
@@ -56,6 +57,16 @@ public class LeagueController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        String requestType = request.getParameter("requestType");
+
+        if(requestType.equals("show")) {
+
+        } else if(requestType.equals("list")) {
+            List<League> leagues = leagueDAO.findLeaguesByPlayer(request.getUserPrincipal().getName());
+            request.setAttribute("leagues", leagues);
+
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/application/leagues/list.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 }

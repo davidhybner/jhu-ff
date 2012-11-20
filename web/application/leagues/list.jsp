@@ -1,3 +1,5 @@
+<%@ page import="jhu.ff.models.League" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,6 +13,7 @@
     <div class="header">
         <span class="vertically-centered"><h2>JHU Fantasy Football</h2></span>
     </div>
+
     <div class="nav">
         <ul>
             <li><a href="/leagues?requestType=list">My Leagues</a></li>
@@ -20,11 +23,22 @@
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
+
+    <%
+        List<League> leagues = (List<League>) request.getAttribute("leagues");
+    %>
+
     <div class="content">
-        <h3><%= request.getUserPrincipal().getName() %></h3>
-
-        <p>Lets place some content here?</p>
-
+        <h2>My Leagues</h2>
+        <ul>
+            <% for(League league : leagues) { %>
+                <% if(league.getOwner().equals(request.getUserPrincipal().getName())) { %>
+                    <li><%= league.getName() + " (owner)" %></li>
+                <% } else { %>
+                    <li><%= league.getName() %></li>
+                <% } %>
+            <% } %>
+        </ul>
     </div>
 </div>
 
