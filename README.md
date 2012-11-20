@@ -8,7 +8,7 @@ Chris Dibble, Eric George, David Hybner
 Project Setup
 =============
 
-Technologies We're Using:
+Technologies We're Using For this Project:
 
 * Java Enterprise Edition
 * MySQL 5.x
