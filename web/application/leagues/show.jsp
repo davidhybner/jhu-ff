@@ -1,5 +1,4 @@
 <%@ page import="jhu.ff.models.League" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,20 +24,25 @@
     </div>
 
     <%
-        List<League> leagues = (List<League>) request.getAttribute("leagues");
+        League league = (League) request.getAttribute("league");
     %>
 
     <div class="content">
-        <h2>My Leagues</h2>
-        <ul>
-            <% for(League league : leagues) { %>
-                <% if(league.getOwner().equals(request.getUserPrincipal().getName())) { %>
-                    <li><a href="/leagues?requestType=show&leagueId=<%= league.getId() %>"><%= league.getName() + " (owner)" %></a></li>
-                <% } else { %>
-                    <li><a href="/leagues?requestType=show&leagueId=<%= league.getId() %>"><%= league.getName() %></a></li>
-                <% } %>
-            <% } %>
-        </ul>
+        <h2><%= league.getName() %>
+        </h2>
+
+        <div class="sub-nav">
+            <ul>
+                <li class="sub-nav-button">League Home</li>
+                <li class="sub-nav-button">My Team</li>
+                <li class="sub-nav-button">Standings</li>
+                <li class="sub-nav-button">Schedule</li>
+            </ul>
+        </div>
+
+
+        <p><%= league.getPlayerRosters() %>
+        </p>
     </div>
 </div>
 

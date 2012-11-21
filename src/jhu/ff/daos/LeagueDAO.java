@@ -2,7 +2,6 @@ package jhu.ff.daos;
 
 import jhu.ff.helpers.ConnectionPool;
 import jhu.ff.models.League;
-import jhu.ff.models.Roster;
 import jhu.ff.models.User;
 
 import java.sql.*;
@@ -64,14 +63,15 @@ public class LeagueDAO {
             preparedStatement.close();
 
             if(result != null) {
-                preparedStatement = database.prepareStatement("SELECT * FROM league_rosters WHERE league_id = ?");
+                preparedStatement = database.prepareStatement("SELECT * FROM league_players WHERE league_id = ?");
                 preparedStatement.setInt(1, leagueId);
                 resultSet = preparedStatement.executeQuery();
 
                 while(resultSet.next()) {
-                    User user = UserDAO.getInstance().getUser(resultSet.getString("player"));
-                    Roster roster = new Roster(resultSet.getString("offenseTeam"), resultSet.getString("defenseTeam"));
-                    result.addPlayerRoster(user, roster);
+                    User user = UserDAO.getInstance().getUser(resultSet.getString("username"));
+//                    Roster roster = new Roster(resultSet.getString("offenseTeam"), resultSet.getString("defenseTeam"));
+//                    result.addPlayerRoster(user, roster);
+                    result.addPlayerRoster(user, null);
                 }
 
                 resultSet.close();

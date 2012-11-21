@@ -60,7 +60,12 @@ public class LeagueController extends HttpServlet {
         String requestType = request.getParameter("requestType");
 
         if(requestType.equals("show")) {
+            int leagueId = Integer.parseInt(request.getParameter("leagueId"));
+            League league = leagueDAO.getLeague(leagueId);
+            request.setAttribute("league", league);
 
+            RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/application/leagues/show.jsp");
+            requestDispatcher.forward(request, response);
         } else if(requestType.equals("list")) {
             List<League> leagues = leagueDAO.findLeaguesByPlayer(request.getUserPrincipal().getName());
             request.setAttribute("leagues", leagues);
