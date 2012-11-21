@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schedule>
+	<week id="1">
+		<game>
+			<home-team team-id="3" points="22" rushing-yards="45" passing-yards="279" turnovers="1" won="1"></home-team>
+			<away-team team-id="1" points="30" rushing-yards="186" passing-yards="191" turnovers="0" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="2" points="44" rushing-yards="122" passing-yards="308" turnovers="2" won="1"></home-team>
+			<away-team team-id="-1" points="13" rushing-yards="129" passing-yards="193" turnovers="0" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="13" rushing-yards="264" passing-yards="20" turnovers="2" won="0"></home-team>
+			<away-team team-id="4" points="34" rushing-yards="228" passing-yards="162" turnovers="0" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="5" points="41" rushing-yards="114" passing-yards="314" turnovers="1" won="1"></home-team>
+			<away-team team-id="-1" points="21" rushing-yards="63" passing-yards="293" turnovers="5" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="6" points="30" rushing-yards="83" passing-yards="254" turnovers="0" won="1"></home-team>
+			<away-team team-id="-1" points="10" rushing-yards="76" passing-yards="199" turnovers="4" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="24" rushing-yards="152" passing-yards="241" turnovers="3" won="0"></home-team>
+			<away-team team-id="7" points="40" rushing-yards="84" passing-yards="292" turnovers="0" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="8" points="31" rushing-yards="94" passing-yards="242" turnovers="1" won="1"></home-team>
+			<away-team team-id="-1" points="19" rushing-yards="75" passing-yards="209" turnovers="1" won="0"></away-team>
+		</game>		
+	</week>
+	<week id="2">
+		<game>
+			<home-team team-id="1" points="27" rushing-yards="148" passing-yards="201" turnovers="1" won="1"></home-team>
+			<away-team team-id="-1" points="19" rushing-yards="82" passing-yards="214" turnovers="1" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="24" rushing-yards="129" passing-yards="357" turnovers="4" won="1"></home-team>
+			<away-team team-id="2" points="23" rushing-yards="111" passing-yards="214" turnovers="2" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="3" points="23" rushing-yards="106" passing-yards="215" turnovers="2" won="1"></home-team>
+			<away-team team-id="5" points="10" rushing-yards="94" passing-yards="74" turnovers="4" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="4" points="18" rushing-yards="90" passing-yards="297" turnovers="1" won="0"></home-team>
+			<away-team team-id="-1" points="20" rushing-yards="102" passing-yards="140" turnovers="2" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="7" rushing-yards="65" passing-yards="52" turnovers="1" won="0"></home-team>
+			<away-team team-id="6" points="27" rushing-yards="216" passing-yards="195" turnovers="0" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="7" points="27" rushing-yards="67" passing-yards="208" turnovers="0" won="1"></home-team>
+			<away-team team-id="8" points="21" rushing-yards="118" passing-yards="218" turnovers="4" won="0"></away-team>
+		</game>	
+	</week>
+	<week id="3">
+		<game>
+			<home-team team-id="-1" points="24" rushing-yards="146" passing-yards="198" turnovers="2" won="1"></home-team>
+			<away-team team-id="1" points="13" rushing-yards="89" passing-yards="191" turnovers="3" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="2" points="31" rushing-yards="121" passing-yards="382" turnovers="1" won="1"></home-team>
+			<away-team team-id="4" points="30" rushing-yards="77" passing-yards="319" turnovers="0" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="14" rushing-yards="127" passing-yards="111" turnovers="0" won="1"></home-team>
+			<away-team team-id="3" points="12" rushing-yards="84" passing-yards="184" turnovers="0" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="5" points="23" rushing-yards="103" passing-yards="171" turnovers="2" won="1"></home-team>
+			<away-team team-id="-1" points="6" rushing-yards="59" passing-yards="101" turnovers="2" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="8" points="25" rushing-yards="59" passing-yards="316" turnovers="1" won="0"></home-team>
+			<away-team team-id="6" points="31" rushing-yards="152" passing-yards="284" turnovers="2" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="3" rushing-yards="116" passing-yards="164" turnovers="4" won="0"></home-team>
+			<away-team team-id="7" points="27" rushing-yards="119" passing-yards="265" turnovers="1" won="1"></away-team>
+		</game>		
+	</week>
+	<week id="4">
+		<game>
+			<home-team team-id="-1" points="0" rushing-yards="45" passing-yards="100" turnovers="4" won="0"></home-team>
+			<away-team team-id="1" points="34" rushing-yards="247" passing-yards="134" turnovers="0" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="2" points="23" rushing-yards="101" passing-yards="337" turnovers="1" won="1"></home-team>
+			<away-team team-id="-1" points="16" rushing-yards="43" passing-yards="314" turnovers="2" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="3" points="28" rushing-yards="102" passing-yards="319" turnovers="2" won="1"></home-team>
+			<away-team team-id="-1" points="27" rushing-yards="45" passing-yards="429" turnovers="0" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="28" rushing-yards="98" passing-yards="340" turnovers="6" won="0"></home-team>
+			<away-team team-id="4" points="52" rushing-yards="247" passing-yards="333" turnovers="2" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="-1" points="18" rushing-yards="41" passing-yards="267" turnovers="5" won="0"></home-team>
+			<away-team team-id="5" points="34" rushing-yards="93" passing-yards="289" turnovers="1" won="1"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="6" points="38" rushing-yards="95" passing-yards="202" turnovers="0" won="1"></home-team>
+			<away-team team-id="-1" points="14" rushing-yards="158" passing-yards="167" turnovers="3" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="7" points="30" rushing-yards="121" passing-yards="305" turnovers="1" won="1"></home-team>
+			<away-team team-id="-1" points="28" rushing-yards="199" passing-yards="205" turnovers="1" won="0"></away-team>
+		</game>	
+		<game>
+			<home-team team-id="8" points="37" rushing-yards="165" passing-yards="338" turnovers="1" won="1"></home-team>
+			<away-team team-id="-1" points="6" rushing-yards="56" passing-yards="181" turnovers="0" won="0"></away-team>
+		</game>	
+	</week>
+</Schedule>
