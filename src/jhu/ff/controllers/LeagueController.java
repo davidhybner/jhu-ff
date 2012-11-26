@@ -2,7 +2,9 @@ package jhu.ff.controllers;
 
 import jhu.ff.daos.LeagueDAO;
 import jhu.ff.daos.LeaguePlayerDAO;
+import jhu.ff.daos.SeasonDAO;
 import jhu.ff.models.League;
+import jhu.ff.models.SeasonWeek;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import java.util.List;
 public class LeagueController extends HttpServlet {
     private LeagueDAO leagueDAO = LeagueDAO.getInstance();
     private LeaguePlayerDAO leaguePlayerDAO = LeaguePlayerDAO.getInstance();
+    private SeasonDAO seasonDAO = SeasonDAO.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("leagueName") != null) {
@@ -63,6 +66,9 @@ public class LeagueController extends HttpServlet {
             int leagueId = Integer.parseInt(request.getParameter("leagueId"));
             League league = leagueDAO.getLeague(leagueId);
             request.setAttribute("league", league);
+
+            SeasonWeek currentSeasonWeek = seasonDAO.getCurrentSeasonWeek();
+            request.setAttribute("currentSeasonWeek", currentSeasonWeek);
 
             RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/application/leagues/show.jsp");
             requestDispatcher.forward(request, response);

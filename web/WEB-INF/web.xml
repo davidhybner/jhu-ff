@@ -31,6 +31,15 @@
         <servlet-name>Registration</servlet-name>
         <servlet-class>jhu.ff.controllers.RegistrationController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Team</servlet-name>
+        <servlet-class>jhu.ff.controllers.TeamController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Team</servlet-name>
+        <url-pattern>/teams</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/register</url-pattern>

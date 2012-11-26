@@ -1,5 +1,6 @@
 <%@ page import="jhu.ff.models.League" %>
 <%@ page import="jhu.ff.models.SeasonWeek" %>
+<%@ page import="jhu.ff.models.Team" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,6 +28,7 @@
     <%
         League league = (League) request.getAttribute("league");
         SeasonWeek seasonWeek = (SeasonWeek) request.getAttribute("currentSeasonWeek");
+        Team team = (Team) request.getAttribute("team");
     %>
 
     <div class="content">
@@ -35,14 +37,14 @@
 
         <div class="sub-nav">
             <ul>
-                <a href="/leagues?requestType=show&leagueId=<%= league.getId() %>"><li class="sub-nav-button sub-nav-button-selected">Standings</li></a>
-                <a href="/teams?playerName=<%= request.getUserPrincipal().getName() %>&leagueID=<%= league.getId() %>"><li class="sub-nav-button">My Team</li></a>
+                <a href="/leagues?requestType=show&leagueId=<%= league.getId() %>"><li class="sub-nav-button">Standings</li></a>
+                <a href="/teams?playerName=<%= request.getUserPrincipal().getName() %>&leagueID=<%= league.getId() %>"><li class="sub-nav-button sub-nav-button-selected">My Team</li></a>
                 <li class="sub-nav-button">Schedule</li>
             </ul>
         </div>
 
 
-        <p><%= league.getPlayerRosters() %>
+        <p><%= team %>
         </p>
     </div>
 </div>

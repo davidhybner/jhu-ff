@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <teams>
-	<team id="1" name="San Francisco 49ers" primary-color="0xE60000" secondary-color="0x996600" logo=""></team>
+	<team logo="" id="1" name="San Francisco 49ers" primary-color="0xE60000" secondary-color="0x996600"></team>
 	<team logo="" id="2" name="Baltimore Ravens" primary-color="0x8A008A" secondary-color="0x000000"></team>
 	<team logo="" id="3" name="Green Bay Packers" primary-color="0x009900" secondary-color="0xFFFF00"></team>
 	<team logo="" id="4" name="New England Patriots" primary-color="0x0000CC" secondary-color="0x9494b8"></team>
 	<team logo="" id="5" name="Chicago Bears" primary-color="0xFF6600" secondary-color="0x00006B"></team>
 	<team logo="" id="6" name="Houston Texans" primary-color="0x000066" secondary-color="0xFF0000"></team>
 	<team logo="" id="7" name="Atlanta Falcons" primary-color="0x000000" secondary-color="0xFF0000"></team>
-	<team logo="" id="8" name="Denver Broncos" primary-color="0xFF7519" secondary-color="0x3333FF"></team></teams>
+	<team logo="" id="8" name="Denver Broncos" primary-color="0xFF7519" secondary-color="0x3333FF"></team>
+</teams>

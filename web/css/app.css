@@ -110,6 +110,12 @@ p {
     border-radius: 5px;
     padding: 2px 4px 2px 4px;
     color: white;
+    cursor: pointer;
+}
+
+.sub-nav-button-selected {
+    color: #d3d3d3;
+    box-shadow: 0 3px 5px #888888;
 }
 
 .sub-nav-button:hover {

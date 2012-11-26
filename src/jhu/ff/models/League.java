@@ -6,7 +6,7 @@ import java.util.Map;
 public class League {
     private int id;
     private String name;
-    private Map<User, Roster> playerRosters = new HashMap<User, Roster>();
+    private Map<User, Team> playerRosters = new HashMap<User, Team>();
     private String owner;
     private String publicID;
 
@@ -33,7 +33,7 @@ public class League {
         this.name = name;
     }
 
-    public Map<User, Roster> getPlayerRosters() {
+    public Map<User, Team> getPlayerRosters() {
         return playerRosters;
     }
 
@@ -55,7 +55,7 @@ public class League {
                 '}';
     }
 
-    public void addPlayerRoster(User user, Roster roster) {
+    public void addPlayerRoster(User user, Team roster) {
         playerRosters.put(user, roster);
     }
 

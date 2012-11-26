@@ -2,6 +2,7 @@ package jhu.ff.daos;
 
 import jhu.ff.helpers.ConnectionPool;
 import jhu.ff.helpers.Constants;
+import jhu.ff.models.Team;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,7 +59,7 @@ public class LeaguePlayerDAO {
             preparedStatement.close();
 
             // we know we have space and the user isn't already in the league, so add the player
-            preparedStatement = database.prepareStatement("insert into league_players values(?, ?)");
+            preparedStatement = database.prepareStatement("INSERT INTO league_players VALUES(?, ?, 0, 0, 0)");
             preparedStatement.setInt(1, leagueID);
             preparedStatement.setString(2, username);
             int rowsAffected = preparedStatement.executeUpdate();
@@ -72,6 +73,73 @@ public class LeaguePlayerDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return result;
+    }
+
+        public boolean draftTeam(int leagueId, int teamId, String playerName, boolean offense) {
+        Connection database = connectionPool.getConnection();
+
+        boolean result = false;
+        String team = offense ? "offense_team" : "defense_team";
+        try {
+            PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM league_players WHERE league_id = ? AND " + team + " = ?");
+            preparedStatement.setInt(1, leagueId);
+            preparedStatement.setInt(2, teamId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // if no records are found, it is valid to add the team for this player
+            if(!resultSet.first()) {
+                resultSet.close();
+                preparedStatement.close();
+
+                preparedStatement = database.prepareStatement("UPDATE league_players WHERE league_id = ? AND username = ? SET " + team + " = ?");
+                preparedStatement.setInt(1, leagueId);
+                preparedStatement.setString(2, playerName);
+                preparedStatement.setInt(3, teamId);
+                int rowsUpdated = preparedStatement.executeUpdate();
+
+                if(rowsUpdated > 0) {
+                    result = true;
+
+                    resultSet.close();
+                    preparedStatement.close();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
+        }
+
+        return result;
+    }
+
+    public Team getTeamForLeagueByPlayer(int leagueID, String playerName) {
+        Team result = null;
+
+        Connection database = connectionPool.getConnection();
+        try {
+            PreparedStatement preparedStatement = database.prepareStatement("SELECT * FROM league_players WHERE league_id = ? AND username = ?");
+            preparedStatement.setInt(1, leagueID);
+            preparedStatement.setString(2, playerName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                int offenseTeam = resultSet.getInt("offense_team");
+                int defenseTeam = resultSet.getInt("defense_team");
+                int score = resultSet.getInt("score");
+
+                result = new Team(offenseTeam, defenseTeam, score);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionPool.closeConnection(database);
+        }
+
         return result;
     }
 }
